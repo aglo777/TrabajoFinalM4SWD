@@ -20,8 +20,9 @@ public class RestData {
 	public @ResponseBody Dxc getData(@RequestParam(name = "sueldo") String sueldo, @RequestParam(name = "ahorro") String ahorro){
 		
 		LOGGER.log(Level.INFO, "< Trabajo DevOps - DXC > <Consultado Diez por ciento>");
-		
+
         Dxc response = new Dxc(Integer.parseInt(ahorro), Integer.parseInt(sueldo));
+        response.calculaRetiro();
 		return response;
 	}
 }

@@ -92,15 +92,15 @@ public class SeleniumTest {
     private void sendSolicitud(double sueldo, double saldo, double retiroEsperado, double saldoRestanteEsperado, double impuestoEsperado) {
         formPage();
 
-        System.out.println("check saldo");
+        //System.out.println("check saldo");
         WebElement inputSaldo = driver.findElement(By.id("saldo"));
         Assertions.assertEquals(true, inputSaldo.isDisplayed());
 
-        System.out.println("check sueldo");
+        // System.out.println("check sueldo");
         WebElement inputSueldo = driver.findElement(By.id("sueldo"));
         Assertions.assertEquals(true, inputSueldo.isDisplayed());
 
-        System.out.println("check boton");
+        //System.out.println("check boton");
         WebElement inputBoton = driver.findElement(By.id("enviar"));
         Assertions.assertEquals(true, inputBoton.isDisplayed());
 

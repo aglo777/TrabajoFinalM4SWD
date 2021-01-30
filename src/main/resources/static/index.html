@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<title>Template Devops</title>
+<title>DEVOPS - Segundo retiro 10%</title>
 <meta charset="utf-8">
 <!-- Meta -->
 <meta name="keywords" content="" />
@@ -32,7 +32,6 @@
 <link rel="stylesheet" href="css/et-line-font/et-line-font.css">
 
 
-<link rel="stylesheet" href="js/gmaps/example.css" />
 <link rel="stylesheet" type="text/css" href="js/smart-forms/smart-forms.css">
 
 </head>
@@ -47,9 +46,8 @@
         <div class="row">
           <div class="col-md-12">
             <div class="header-title-box-2">
-              <h1 class="text-white title uppercase">laboratorio<br/>
-                unidad 4<br/>
-                devops<span class="text-red">.</span></h1>
+              <h1 class="text-white title uppercase">AFP SATAN
+             <!--  <span class="text-red">.</span> --></h1>
             </div>
           </div>
         </div>
@@ -65,15 +63,15 @@
             <div class="text-box-inner">
               
           <div class="col-xs-12 text-left">
-                <h2><strong>Favor Ingresar los Datos</strong></h2>
+                <h2><strong>Calcula tu segundo retiro del 10%</strong></h2>
                 <div class="title-line-4 less-margin"></div>
               </div>
               <div class="clearfix"></div>
               <br/><br/>
         <div class="col-md-8">
-          <div class="smart-forms bmargin">
+          <div class="smart-forms bmargin" id="formulario">
            
-            <form method="post" action="php/smartprocess.php" id="smart-form">
+            <form method="post" action="" id="smart-form">
               <div>
                 <div class="section">
                   <label class="field prepend-icon">
@@ -94,12 +92,24 @@
               </div>
               <!-- end .form-body section -->
               <div class="form-footer">
-                <button type="submit" id="enviar" data-btntext-sending="Enviando..." class="button btn-primary red-5">Enviar</button>
-                <button type="reset" id="cancelar" class="button"> Cancelar </button>
+                <button type="button" id="calcular" onclick='llamada_api($("#saldo").val(), $("#sueldo").val());' data-btntext-sending="Calculando ..." class="button btn-primary red-5">Calcular</button>
               </div>
               <!-- end .form-footer section -->
             </form>
           </div>
+
+
+
+
+
+          <div class="smart-forms bmargin" id="resultado">
+            <div><h4>Tu 10% a retirar seria :  $ <span id="resp_dxc"></span></h4></div>
+            <div><h4>Tu saldo luego del retiro seria :  $ <span id="resp_saldo"></span></h4></div>
+            <div><h4>El impuesto a pagar seria :  $ <span id="resp_impuesto"></span></h4></div>
+            <button type="volver" id="volver" class="button btn-primary red-5" onclick="reset_formulario();"> Volver </button>
+
+          </div>
+
           <!-- end .smart-forms section --> 
           
         </div>
@@ -132,21 +142,30 @@
  
 <!-- ============ JS FILES ============ -->
  
-<script type="text/javascript" src="js/universal/jquery.js"></script> 
-<script src="js/bootstrap/bootstrap.min.js" type="text/javascript"></script> 
-<script src="js/mainmenu/customeUI.js"></script> 
-<script src="js/scrolltotop/totop.js"></script> 
-<script src="js/mainmenu/jquery.sticky.js"></script> 
-<script type="text/javascript" src="js/smart-forms/jquery.form.min.js"></script> 
-<script type="text/javascript" src="js/smart-forms/jquery.validate.min.js"></script> 
-<script type="text/javascript" src="js/smart-forms/additional-methods.min.js"></script> 
-<script type="text/javascript" src="js/smart-forms/smart-form.js"></script> 
- 
-<script src="js/scripts/functions.js" type="text/javascript"></script> 
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+
+
+
+
 <script type="text/javascript">
+
+
+$(document).ready(function() {
+
+  $("#formulario").show();
+  $("#resultado").hide(); 
+
+});
+
+
+
 var a = $("#header2").offset().top;
 
 <!-- background color for sticky --> 
+
 $(document).scroll(function(){
     if($(this).scrollTop() > a)
     {   
@@ -156,6 +175,47 @@ $(document).scroll(function(){
 
     }
 });
+
+
+function reset_formulario() {
+
+  $("#saldo").val('');
+  $("#sueldo").val('');
+
+
+$("#formulario").show();
+$("#resultado").hide(); 
+
+}
+
+
+    function llamada_api(prm_ahorro, prm_sueldo) {
+      jQuery.ajax({
+        url: "http://localhost:8082/rest/msdxc/dxc",
+        data: {
+          ahorro: prm_ahorro,
+          sueldo: prm_sueldo
+        },
+        type: "GET",
+        dataType: "json",
+        success: function (data) {
+         
+          $("#formulario").hide();
+          $("#resp_dxc").html(data['retiro']);
+          $("#resp_saldo").html(data['saldo']);
+          $("#resp_impuesto").html(data['impuesto']);
+          
+          $("#resultado").show();         
+          
+        },
+        error: function (xhr, status) {
+          alert("Hubo un problema");
+        },
+        complete: function (xhr, status) {
+        }
+      });
+    }
 </script>
+
 </body>
 </html>

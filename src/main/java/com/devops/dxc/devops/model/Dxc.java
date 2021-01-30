@@ -3,6 +3,7 @@ package com.devops.dxc.devops.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class Dxc implements Serializable{
 
@@ -35,8 +36,8 @@ public class Dxc implements Serializable{
 
 	public double getRetiro() { return retiro; }
 
-	public double getSaldo() {
-		return saldo;
+	public String getSaldo() {
+		return new BigDecimal(saldo).toPlainString();
 	}
 
 	public void setSaldo(double saldo) {

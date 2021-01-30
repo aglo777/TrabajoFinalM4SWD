@@ -31,6 +31,8 @@ public class Dxc implements Serializable{
 		this.retiro = retiro;
 	}
 
+	public double getRetiro() { return retiro; }
+
 	public double getSaldo() {
 		return saldo;
 	}

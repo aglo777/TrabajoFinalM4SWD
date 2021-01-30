@@ -5,8 +5,14 @@
  */
 package com.devops.dxc.devops;
 
+import java.math.BigDecimal;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -24,6 +30,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @author cristian
  */
 @RunWith(SpringRunner.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class SeleniumTest {
 
@@ -31,9 +38,16 @@ public class SeleniumTest {
     private int port;
     private WebDriver driver;
 
-    protected void setUp() {
+    @BeforeAll
+    public void setUp() {
+        System.out.println("INICIANDO");
         System.setProperty("webdriver.chrome.driver", "src/test/resources/seleniumdriver/chromedriver");
         driver = new ChromeDriver();
+    }
+
+    @AfterAll
+    public void cerrar() {
+        driver.quit();
     }
 
     private String getHost() {
@@ -41,16 +55,41 @@ public class SeleniumTest {
     }
 
     private void formPage() {
-        if (driver == null) {
-            setUp();
-        }
         driver.get(getHost() + "/index.html");
         (new WebDriverWait(driver, 10)).until((ExpectedCondition<Boolean>) (WebDriver d) -> d.getTitle().contains("Devops"));
     }
 
     @Test
-    public void testApp10Por100() throws Exception {
+    public void cuandoSueldoEs1000000Ahorro10000000RetiroEs1000000() throws Exception {
+        sendSolicitud(1000000.0, 10000000.0, 1000000.0, 0.0, 0.0);
+    }
 
+    @Test
+    public void cuandoSueldoEs2000000Ahorro10000000RetiroEs8254690() throws Exception {
+        sendSolicitud(2000000.0, 10000000.0, 8254690.0, 0.0, 0.0);
+    }
+
+    @Test
+    public void cuandoSueldoEs2700000Ahorro10000000RetiroEs635914() throws Exception {
+        sendSolicitud(2700000.0, 10000000.0, 635914.0, 0.0, 0.0);
+    }
+
+    @Test
+    public void cuandoSueldoEs4700000Ahorro10000000RetiroEs19643() throws Exception {
+        sendSolicitud(4700000.0, 10000000.0, 19643.0, 0.0, 0.0);
+    }
+
+    @Test
+    public void cuandoSueldoEs5100000Ahorro20000000RetiroEs705948() throws Exception {
+        sendSolicitud(5100000.0, 20000000.0, 705948.0, 0.0, 0.0);
+    }
+
+    @Test
+    public void cuandoSueldoEs6100000Ahorro20000000RetiroEs508958() throws Exception {
+        sendSolicitud(6100000.0, 20000000.0, 508958.0, 0.0, 0.0);
+    }
+
+    private void sendSolicitud(double sueldo, double saldo, double retiroEsperado, double saldoRestanteEsperado, double impuestoEsperado) {
         formPage();
 
         System.out.println("check saldo");
@@ -66,15 +105,18 @@ public class SeleniumTest {
         Assertions.assertEquals(true, inputBoton.isDisplayed());
 
         inputSaldo.click();
-        inputSaldo.sendKeys("11");
+        inputSaldo.sendKeys(new BigDecimal(saldo).toPlainString());
 
         inputSueldo.click();
-        inputSueldo.sendKeys("22");
+        inputSueldo.sendKeys(new BigDecimal(sueldo).toPlainString());
 
         inputBoton.click();
 
-        Thread.sleep(3000);
-        driver.quit();
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(SeleniumTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

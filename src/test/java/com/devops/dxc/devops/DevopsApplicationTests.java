@@ -2,6 +2,7 @@ package com.devops.dxc.devops;
 
 import com.devops.dxc.devops.model.Dxc;
 import com.devops.dxc.devops.model.RespuestaServicioRetiroDTO;
+import com.devops.dxc.devops.model.RespuestaUfDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Ignore;
 import org.junit.jupiter.api.Assertions;
@@ -153,6 +154,15 @@ class DevopsApplicationTests {
 		Assertions.assertEquals("508958.0", respuestaServicioRetiroDTO.getRetiro());
 		Assertions.assertEquals("19491042", respuestaServicioRetiroDTO.getSaldo());
 		Assertions.assertEquals("1491042.0", respuestaServicioRetiroDTO.getImpuesto());
+	}
+
+	@Ignore
+	@Test
+	public void consultaUfServicioExterno() throws Exception {
+		String uri = "/rest/msdxc/uf";
+		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+		int status = mvcResult.getResponse().getStatus();
+		Assertions.assertEquals(200, status);
 	}
 
 	@Test

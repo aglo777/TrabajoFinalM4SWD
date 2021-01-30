@@ -12,7 +12,7 @@ public class Util {
      * @return Cálculo 10% ahorro AFP
      */
     public static void calcula10(Dxc dxc) {
-        double valorUf = getUf();
+        double valorUf = getUf().getSerie()[0].getValor();
         if (dxc.getAhorro() <= valorUf * 35) {
             dxc.setImpuesto(calculaImpuesto(dxc));
             dxc.setSaldo(0.0);
@@ -47,14 +47,14 @@ public class Util {
          * Método que retorna el valor de la UF
          * @return uf
          */
-    public static double getUf(){
+    public static RespuestaUfDTO getUf(){
         String uri = "https://mindicador.cl/api/uf";
 
         RestTemplate restTemplate = new RestTemplate();
 
         String json = restTemplate.getForObject(uri, String.class);
         RespuestaUfDTO respuestaUfDTO = new Gson().fromJson(json, RespuestaUfDTO.class);
-        return respuestaUfDTO.getSerie()[0].getValor();
+        return respuestaUfDTO;
 
     }
     

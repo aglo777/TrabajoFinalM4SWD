@@ -39,9 +39,18 @@ public class SeleniumTest {
     private WebDriver driver;
 
     @BeforeAll
-    public void setUp() {
-        System.out.println("INICIANDO");
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/seleniumdriver/chromedriver");
+    public void setUp() throws Exception {
+
+        if (org.apache.commons.lang.SystemUtils.IS_OS_MAC) {
+            System.setProperty("webdriver.chrome.driver", "src/test/resources/seleniumdriver/chromedriver");
+        } else if (org.apache.commons.lang.SystemUtils.IS_OS_WINDOWS) {
+            System.setProperty("webdriver.chrome.driver", "src/test/resources/seleniumdriver/chromedriver_windows.exe");
+        } else if (org.apache.commons.lang.SystemUtils.IS_OS_LINUX) {
+            System.setProperty("webdriver.chrome.driver", "src/test/resources/seleniumdriver/chromedriver_linux");
+        } else {
+            throw new Exception("No soportado");
+        }
+
         driver = new ChromeDriver();
     }
 
@@ -61,32 +70,37 @@ public class SeleniumTest {
 
     @Test
     public void cuandoSueldoEs1000000Ahorro10000000RetiroEs1000000() throws Exception {
-        sendSolicitud(1000000.0, 10000000.0, 1000000.0, 0.0, 0.0);
+        sendSolicitud(1000000.0, 10000000.0, 1000000.0, 9000000.0, 0.0);
     }
 
     @Test
     public void cuandoSueldoEs2000000Ahorro10000000RetiroEs8254690() throws Exception {
-        sendSolicitud(2000000.0, 10000000.0, 8254690.0, 0.0, 0.0);
+        sendSolicitud(2000000.0, 10000000.0, 8254690.0, 9174531.0, 174531.0);
     }
 
     @Test
     public void cuandoSueldoEs2700000Ahorro10000000RetiroEs635914() throws Exception {
-        sendSolicitud(2700000.0, 10000000.0, 635914.0, 0.0, 0.0);
+        sendSolicitud(2700000.0, 10000000.0, 635914.0, 9364086.0, 364086.0);
+    }
+
+    @Test
+    public void cuandoSueldoEs3400000Ahorro10000000RetiroEs387604() throws Exception {
+        sendSolicitud(3400000.0, 10000000.0, 387604.0, 9612396.0, 612396.0);
     }
 
     @Test
     public void cuandoSueldoEs4700000Ahorro10000000RetiroEs19643() throws Exception {
-        sendSolicitud(4700000.0, 10000000.0, 19643.0, 0.0, 0.0);
+        sendSolicitud(4700000.0, 10000000.0, 19643.0, 9980357.0, 980357.0);
     }
 
     @Test
     public void cuandoSueldoEs5100000Ahorro20000000RetiroEs705948() throws Exception {
-        sendSolicitud(5100000.0, 20000000.0, 705948.0, 0.0, 0.0);
+        sendSolicitud(5100000.0, 20000000.0, 705948.0, -1.0, 1294052.0);
     }
 
     @Test
     public void cuandoSueldoEs6100000Ahorro20000000RetiroEs508958() throws Exception {
-        sendSolicitud(6100000.0, 20000000.0, 508958.0, 0.0, 0.0);
+        sendSolicitud(6100000.0, 20000000.0, 508958.0, -1.0, 1491042.0);
     }
 
     private void sendSolicitud(double sueldo, double saldo, double retiroEsperado, double saldoRestanteEsperado, double impuestoEsperado) {

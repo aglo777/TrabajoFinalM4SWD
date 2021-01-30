@@ -19,7 +19,7 @@ public class Util {
             dxc.setRetiro(dxc.getAhorro());
         } else {
             dxc.setImpuesto(calculaImpuesto(dxc));
-            double diezPorciento = dxc.getAhorro() * 0.1 - calculaImpuesto(dxc);
+            double diezPorciento = dxc.getAhorro() * 0.1 - dxc.getImpuesto();
             dxc.setRetiro(Math.min(diezPorciento, valorUf * 150));
             dxc.setSaldo(dxc.getAhorro() - diezPorciento);
         }

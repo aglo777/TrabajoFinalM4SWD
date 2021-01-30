@@ -51,6 +51,7 @@ public class Dxc implements Serializable{
 		this.impuesto = impuesto;
 	}
 
+	@JsonIgnore
 	public double getSueldo() {
 		return sueldo;
 	}
@@ -59,6 +60,7 @@ public class Dxc implements Serializable{
 		this.sueldo = sueldo;
 	}
 
+	@JsonIgnore
 	public double getAhorro() {
 		return ahorro;
 	}

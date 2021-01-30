@@ -2,7 +2,6 @@ package com.devops.dxc.devops;
 
 import com.devops.dxc.devops.model.Dxc;
 import com.devops.dxc.devops.model.RespuestaServicioRetiroDTO;
-import com.devops.dxc.devops.model.RespuestaUfDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Ignore;
 import org.junit.jupiter.api.Assertions;

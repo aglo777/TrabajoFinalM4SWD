@@ -46,6 +46,8 @@ class DevopsApplicationTests {
 		int status = mvcResult.getResponse().getStatus();
 		Assertions.assertEquals(200, status);
 		Assertions.assertEquals("1000000.0", respuestaServicioRetiroDTO.getRetiro());
+		Assertions.assertEquals("9000000.0", respuestaServicioRetiroDTO.getSaldo());
+		Assertions.assertEquals("0.0", respuestaServicioRetiroDTO.getImpuesto());
 	}
 
 	@Test
@@ -60,6 +62,8 @@ class DevopsApplicationTests {
 		int status = mvcResult.getResponse().getStatus();
 		Assertions.assertEquals(200, status);
 		Assertions.assertEquals("825469.0", respuestaServicioRetiroDTO.getRetiro());
+		Assertions.assertEquals("9174531.0", respuestaServicioRetiroDTO.getSaldo());
+		Assertions.assertEquals("174531.0", respuestaServicioRetiroDTO.getImpuesto());
 	}
 
 	@Test
@@ -74,6 +78,24 @@ class DevopsApplicationTests {
 		int status = mvcResult.getResponse().getStatus();
 		Assertions.assertEquals(200, status);
 		Assertions.assertEquals("635914.0", respuestaServicioRetiroDTO.getRetiro());
+		Assertions.assertEquals("9364086.0", respuestaServicioRetiroDTO.getSaldo());
+		Assertions.assertEquals("364086.0", respuestaServicioRetiroDTO.getImpuesto());
+	}
+
+	@Test
+	public void cuandoSueldoEs3400000Ahorro10000000RetiroEs387604() throws Exception {
+		String uri = "/rest/msdxc/dxc";
+		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri).queryParam("sueldo", "3400000").
+				queryParam("ahorro", "10000000").accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+
+		RespuestaServicioRetiroDTO respuestaServicioRetiroDTO = objectMapper.
+				readValue(mvcResult.getResponse().getContentAsByteArray(), RespuestaServicioRetiroDTO.class);
+
+		int status = mvcResult.getResponse().getStatus();
+		Assertions.assertEquals(200, status);
+		Assertions.assertEquals("387604.0", respuestaServicioRetiroDTO.getRetiro());
+		Assertions.assertEquals("9612396.0", respuestaServicioRetiroDTO.getSaldo());
+		Assertions.assertEquals("612396.0", respuestaServicioRetiroDTO.getImpuesto());
 	}
 
 	@Test
@@ -88,6 +110,8 @@ class DevopsApplicationTests {
 		int status = mvcResult.getResponse().getStatus();
 		Assertions.assertEquals(200, status);
 		Assertions.assertEquals("19643.0", respuestaServicioRetiroDTO.getRetiro());
+		Assertions.assertEquals("9980357.0", respuestaServicioRetiroDTO.getSaldo());
+		Assertions.assertEquals("980357.0", respuestaServicioRetiroDTO.getImpuesto());
 	}
 
 	@Test
@@ -102,6 +126,8 @@ class DevopsApplicationTests {
 		int status = mvcResult.getResponse().getStatus();
 		Assertions.assertEquals(200, status);
 		Assertions.assertEquals("705948.0", respuestaServicioRetiroDTO.getRetiro());
+		Assertions.assertEquals("1.9294052E7", respuestaServicioRetiroDTO.getSaldo());
+		Assertions.assertEquals("1294052.0", respuestaServicioRetiroDTO.getImpuesto());
 	}
 
 	@Test
@@ -116,10 +142,7 @@ class DevopsApplicationTests {
 		int status = mvcResult.getResponse().getStatus();
 		Assertions.assertEquals(200, status);
 		Assertions.assertEquals("508958.0", respuestaServicioRetiroDTO.getRetiro());
+		Assertions.assertEquals("1.9491042E7", respuestaServicioRetiroDTO.getSaldo());
+		Assertions.assertEquals("1491042.0", respuestaServicioRetiroDTO.getImpuesto());
 	}
-
-
-
-
-
 }

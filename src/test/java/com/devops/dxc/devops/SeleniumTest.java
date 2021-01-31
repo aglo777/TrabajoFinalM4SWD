@@ -65,7 +65,7 @@ public class SeleniumTest {
 
     private void formPage() {
         driver.get(getHost() + "/index.html");
-        (new WebDriverWait(driver, 10)).until((ExpectedCondition<Boolean>) (WebDriver d) -> d.getTitle().contains("Devops"));
+        (new WebDriverWait(driver, 10)).until((ExpectedCondition<Boolean>) (WebDriver d) -> d.getTitle().contains("DEVOPS"));
     }
 
     @Test
@@ -75,7 +75,7 @@ public class SeleniumTest {
 
     @Test
     public void cuandoSueldoEs2000000Ahorro10000000RetiroEs8254690MetodoCalcula10() throws Exception {
-        sendSolicitud(2000000.0, 10000000.0, 8254690.0, 9174531.0, 174531.0);
+        sendSolicitud(2000000.0, 10000000.0, 825469.0, 9174531.0, 174531.0);
     }
 
     @Test
@@ -115,7 +115,7 @@ public class SeleniumTest {
         Assertions.assertEquals(true, inputSueldo.isDisplayed());
 
         //System.out.println("check boton");
-        WebElement inputBoton = driver.findElement(By.id("enviar"));
+        WebElement inputBoton = driver.findElement(By.id("calcular"));
         Assertions.assertEquals(true, inputBoton.isDisplayed());
 
         inputSaldo.click();
@@ -126,8 +126,24 @@ public class SeleniumTest {
 
         inputBoton.click();
 
+        //sleep(1000);
+        System.out.println("Esperando que aparezca el resultado...");
+        (new WebDriverWait(driver, 10)).until((ExpectedCondition<Boolean>) (WebDriver d) -> d.findElement(By.id("resultado")).isDisplayed());
+
+        String resultadoRetiro = driver.findElement(By.id("resp_dxc")).getText();
+        String resultadoImpuesto = driver.findElement(By.id("resp_impuesto")).getText();
+        String resultadoSaldo = driver.findElement(By.id("resp_saldo")).getText();
+
+        Assertions.assertEquals(Double.parseDouble(resultadoRetiro), retiroEsperado);
+        Assertions.assertEquals(Double.parseDouble(resultadoImpuesto), impuestoEsperado);
+        Assertions.assertEquals(Double.parseDouble(resultadoSaldo), saldoRestanteEsperado);
+        //sleep(2000);
+
+    }
+
+    private void sleep(int s) {
         try {
-            Thread.sleep(200);
+            Thread.sleep(s);
         } catch (InterruptedException ex) {
             Logger.getLogger(SeleniumTest.class.getName()).log(Level.SEVERE, null, ex);
         }

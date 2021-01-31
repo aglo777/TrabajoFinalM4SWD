@@ -213,7 +213,7 @@ $("#resultado").hide();
         complete: function (xhr, status) {
         }
       }).fail( function( jqXHR, textStatus, errorThrown ) {
-        alert( 'Hubo un problema:'+jqXHR.status);
+        alert( 'Hubo un problema: '+jqXHR.textStatus + " " + errorThrown);
 });
     }
 </script>

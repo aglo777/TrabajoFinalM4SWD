@@ -25,9 +25,13 @@ public class RestData {
 
 		LOGGER.log(Level.INFO, "< Trabajo DevOps - DXC > <Consultado Diez por ciento>");
 		try{
-			Dxc response = new Dxc(Integer.parseInt(ahorro), Integer.parseInt(sueldo));
-			response.calculaRetiro();
-			return response;
+			if(Integer.parseInt(ahorro) > 0 && !(Integer.parseInt(sueldo) < 0)) {
+				Dxc response = new Dxc(Integer.parseInt(ahorro), Integer.parseInt(sueldo));
+				response.calculaRetiro();
+				return response;
+			}else{
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ahorro debe ser mayor que cero y sueldo mayor o igual a cero");
+			}
 		}catch(NumberFormatException e){
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ingrese números en campos sueldo y ahorro", e);
 		}

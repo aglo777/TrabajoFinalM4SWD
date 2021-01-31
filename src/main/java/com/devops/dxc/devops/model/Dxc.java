@@ -3,6 +3,7 @@ package com.devops.dxc.devops.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class Dxc implements Serializable{
 

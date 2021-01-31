@@ -210,12 +210,11 @@ $("#resultado").hide();
           $("#resultado").show();         
           
         },
-        error: function (xhr, status) {
-          alert("Hubo un problema");
-        },
         complete: function (xhr, status) {
         }
-      });
+      }).fail( function( jqXHR, textStatus, errorThrown ) {
+        alert( 'Hubo un problema:'+jqXHR.status);
+});
     }
 </script>
 

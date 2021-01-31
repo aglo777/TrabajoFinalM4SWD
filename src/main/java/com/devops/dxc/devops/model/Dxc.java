@@ -34,18 +34,20 @@ public class Dxc implements Serializable{
 		this.retiro = retiro;
 	}
 
-	public double getRetiro() { return retiro; }
+	public String getRetiro() {
+		return String.format("%.0f", retiro);
+	}
 
 	public String getSaldo() {
-		return new BigDecimal(saldo).toPlainString();
+		return String.format("%.0f", saldo);
 	}
 
 	public void setSaldo(double saldo) {
 		this.saldo = saldo;
 	}
 
-	public double getImpuesto() {
-		return impuesto;
+	public String getImpuesto() {
+		return String.format("%.0f", impuesto);
 	}
 
 	public void setImpuesto(double impuesto) {

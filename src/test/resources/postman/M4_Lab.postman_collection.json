@@ -1,0 +1,679 @@
+{
+	"info": {
+		"_postman_id": "8195a6a6-06ee-42c4-89aa-f2eccc825213",
+		"name": "M4_Lab",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Sueldo=1000000 | Ahorro=1000000 | Retiro=1000000",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"10%\", () => {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.retiro).to.eql(\"1000000\");",
+							"  pm.expect(responseJson.saldo).to.eql(\"9000000\");",
+							"  pm.expect(responseJson.impuesto).to.eql(\"0\");",
+							"});",
+							"",
+							"pm.test(\"Testing status codes\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=10000000&sueldo=1000000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"dxc"
+					],
+					"query": [
+						{
+							"key": "ahorro",
+							"value": "10000000"
+						},
+						{
+							"key": "sueldo",
+							"value": "1000000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sueldo=2000000 | Ahorro=10000000 | Retiro=8254690",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"10%\", () => {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.retiro).to.eql(\"825469\");",
+							"  pm.expect(responseJson.saldo).to.eql(\"9174531\");",
+							"  pm.expect(responseJson.impuesto).to.eql(\"174531\");",
+							"});",
+							"",
+							"pm.test(\"Testing status codes\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 900ms\", () => {",
+							"pm.expect(pm.response.responseTime).to.be.below(900);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=10000000&sueldo=2000000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"dxc"
+					],
+					"query": [
+						{
+							"key": "ahorro",
+							"value": "10000000"
+						},
+						{
+							"key": "sueldo",
+							"value": "2000000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sueldo=2700000 | Ahorro=10000000 | Retiro=635914 ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"10%\", () => {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.retiro).to.eql(\"635914\");",
+							"  pm.expect(responseJson.saldo).to.eql(\"9364086\");",
+							"  pm.expect(responseJson.impuesto).to.eql(\"364086\");",
+							"});",
+							"",
+							"pm.test(\"Testing status codes\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 900ms\", () => {",
+							"pm.expect(pm.response.responseTime).to.be.below(900);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=10000000&sueldo=2700000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"dxc"
+					],
+					"query": [
+						{
+							"key": "ahorro",
+							"value": "10000000"
+						},
+						{
+							"key": "sueldo",
+							"value": "2700000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sueldo=3400000 | Ahorro=10000000 | Retiro=387604 ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"10%\", () => {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.retiro).to.eql(\"387604\");",
+							"  pm.expect(responseJson.saldo).to.eql(\"9612396\");",
+							"  pm.expect(responseJson.impuesto).to.eql(\"612396\");",
+							"});",
+							"",
+							"pm.test(\"Testing status codes\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 900ms\", () => {",
+							"pm.expect(pm.response.responseTime).to.be.below(900);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=10000000&sueldo=3400000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"dxc"
+					],
+					"query": [
+						{
+							"key": "ahorro",
+							"value": "10000000"
+						},
+						{
+							"key": "sueldo",
+							"value": "3400000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sueldo=4700000 | Ahorro=10000000 | Retiro=19643",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"10%\", () => {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.retiro).to.eql(\"19643\");",
+							"  pm.expect(responseJson.saldo).to.eql(\"9980357\");",
+							"  pm.expect(responseJson.impuesto).to.eql(\"980357\");",
+							"});",
+							"",
+							"pm.test(\"Testing status codes\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 900ms\", () => {",
+							"pm.expect(pm.response.responseTime).to.be.below(900);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=10000000&sueldo=4700000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"dxc"
+					],
+					"query": [
+						{
+							"key": "ahorro",
+							"value": "10000000"
+						},
+						{
+							"key": "sueldo",
+							"value": "4700000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sueldo=5100000 | Ahorro=20000000 | Retiro=705948",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"10%\", () => {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.retiro).to.eql(\"705948\");",
+							"  pm.expect(responseJson.saldo).to.eql(\"19294052\");",
+							"  pm.expect(responseJson.impuesto).to.eql(\"1294052\");",
+							"});",
+							"",
+							"pm.test(\"Testing status codes\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 900ms\", () => {",
+							"pm.expect(pm.response.responseTime).to.be.below(900);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=20000000&sueldo=5100000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"dxc"
+					],
+					"query": [
+						{
+							"key": "ahorro",
+							"value": "20000000"
+						},
+						{
+							"key": "sueldo",
+							"value": "5100000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sueldo=6100000 | Ahorro=20000000 | Retiro=508958",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"10%\", () => {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.retiro).to.eql(\"508958\");",
+							"  pm.expect(responseJson.saldo).to.eql(\"19491042\");",
+							"  pm.expect(responseJson.impuesto).to.eql(\"1491042\");",
+							"});",
+							"",
+							"pm.test(\"Testing status codes\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 900ms\", () => {",
+							"pm.expect(pm.response.responseTime).to.be.below(900);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=20000000&sueldo=6100000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"dxc"
+					],
+					"query": [
+						{
+							"key": "ahorro",
+							"value": "20000000"
+						},
+						{
+							"key": "sueldo",
+							"value": "6100000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Response time & code |  UF",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Testing response times",
+							"",
+							"pm.test(\"Response time is less than 600ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(600);",
+							"});",
+							"",
+							"// Testing status codes",
+							"",
+							"pm.test(\"Testing status codes\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/uf/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"uf",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validate string value",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"The response has all properties\", () => {",
+							"const responseJson = pm.response.json();",
+							"pm.expect(responseJson.retiro).to.be.a('string');",
+							"pm.expect(responseJson.saldo).to.be.a('string');",
+							"pm.expect(responseJson.impuesto).to.be.a('string');",
+							"});",
+							"",
+							"pm.test(\"Testing status codes\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=10000000&sueldo=1500000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"dxc"
+					],
+					"query": [
+						{
+							"key": "ahorro",
+							"value": "10000000"
+						},
+						{
+							"key": "sueldo",
+							"value": "1500000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send  invalid parameters | Bad request | inpunt letters",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", () => {",
+							"  pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=dasdasdas&sueldo=dasdsadsad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"dxc"
+					],
+					"query": [
+						{
+							"key": "ahorro",
+							"value": "dasdasdas"
+						},
+						{
+							"key": "sueldo",
+							"value": "dasdsadsad"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send  invalid parameters | Bad request | input negative numbers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", () => {",
+							"  pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=dasdasdas&sueldo=dasdsadsad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"dxc"
+					],
+					"query": [
+						{
+							"key": "ahorro",
+							"value": "dasdasdas"
+						},
+						{
+							"key": "sueldo",
+							"value": "dasdsadsad"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Method not allowed | Bad request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Method not allowed ' + pm.response.code, function() {",
+							"    pm.expect(pm.response.code).equal(405);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ahorro\": \"9000000\",\n    \"sueldo\": \"1000000\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=1000000&sueldo=2000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"dxc"
+					],
+					"query": [
+						{
+							"key": "ahorro",
+							"value": "1000000"
+						},
+						{
+							"key": "sueldo",
+							"value": "2000"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

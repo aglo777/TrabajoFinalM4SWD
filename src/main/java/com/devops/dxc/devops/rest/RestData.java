@@ -41,8 +41,8 @@ public class RestData {
 
     @GetMapping(path = "/uf", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    RespuestaUfDTO getData() {
+    RespuestaUfDTO getData(@RequestParam(required = false) String fecha) {
         LOGGER.log(Level.INFO, "< Trabajo DevOps - DXC > <Consultado valor UF>");
-        return Util.getUf();
+        return Util.getUf(fecha);
     }
 }

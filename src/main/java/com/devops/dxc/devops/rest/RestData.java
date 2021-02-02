@@ -35,11 +35,8 @@ public class RestData {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ahorro debe ser mayor que cero y sueldo mayor o igual a cero");
             }
         } catch (NumberFormatException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ingrese números en campos sueldo y ahorro", e);
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
-        }
-
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ingrese números en campos sueldo y ahorro", e);
+		}
     }
 
     @GetMapping(path = "/uf", produces = MediaType.APPLICATION_JSON_VALUE)

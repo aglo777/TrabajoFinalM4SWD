@@ -12,7 +12,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -21,6 +20,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -54,8 +54,10 @@ public class SeleniumTest {
         } else {
             throw new Exception("No soportado");
         }
-
-        driver = new ChromeDriver();
+        ChromeOptions opt = new ChromeOptions();
+        opt.addArguments("--no-sandbox");
+        opt.addArguments("--headless");
+        driver = new ChromeDriver(opt);
 
         formPage();
     }
@@ -157,18 +159,19 @@ public class SeleniumTest {
 
     private void sendSolicitud(double sueldo, double saldo, double retiroEsperado, double saldoRestanteEsperado, double impuestoEsperado) {
 
-        formPage();
+        //formPage();
         //System.out.println("check saldo");
+        System.out.println("Check Saldo");
         WebElement inputSaldo = driver.findElement(By.id("saldo"));
         inputSaldo.clear();
         Assertions.assertEquals(true, inputSaldo.isDisplayed());
 
-        // System.out.println("check sueldo");
+        System.out.println("Check sueldo");
         WebElement inputSueldo = driver.findElement(By.id("sueldo"));
         inputSueldo.clear();
         Assertions.assertEquals(true, inputSueldo.isDisplayed());
 
-        //System.out.println("check boton");
+        System.out.println("Check boton");
         WebElement inputBoton = driver.findElement(By.id("calcular"));
         Assertions.assertEquals(true, inputBoton.isDisplayed());
 
@@ -178,28 +181,34 @@ public class SeleniumTest {
         inputSueldo.click();
         inputSueldo.sendKeys(new BigDecimal(sueldo).toPlainString());
 
+        System.out.println("Clic boton consulta");
         inputBoton.click();
-
+        System.out.println("Esperando 2.5 segundos");
         sleep(2500);
 
         try {
-            (new WebDriverWait(driver, 10)).until((ExpectedCondition<Boolean>) (WebDriver d) -> d.findElement(By.id("resultado")).isDisplayed());
+            System.out.println("Esperando div con resultados");
+            (new WebDriverWait(driver, 5)).until((ExpectedCondition<Boolean>) (WebDriver d) -> d.findElement(By.id("resultado")).isDisplayed());
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("BUSCANDO ALERTA DE ERROR:");
-            System.out.println("ALERTA: " + driver.switchTo().alert().getText());
+            System.out.println("SOURCE ERROR: " + driver.getPageSource());
         }
-
+        System.out.println("Resultados encontrados:");
         String resultadoRetiro = driver.findElement(By.id("resp_dxc")).getText();
         String resultadoImpuesto = driver.findElement(By.id("resp_impuesto")).getText();
         String resultadoSaldo = driver.findElement(By.id("resp_saldo")).getText();
 
+        System.out.println("Resultado Retiro: " + resultadoRetiro);
+        System.out.println("Resultado Impuesto: " + resultadoImpuesto);
+        System.out.println("Resultado Saldo: " + resultadoSaldo);
         Assertions.assertEquals(Double.parseDouble(resultadoRetiro), retiroEsperado);
         Assertions.assertEquals(Double.parseDouble(resultadoImpuesto), impuestoEsperado);
         Assertions.assertEquals(Double.parseDouble(resultadoSaldo), saldoRestanteEsperado);
 
+        System.out.println("Clic en volver");
         driver.findElement(By.id("volver")).click();
         (new WebDriverWait(driver, 10)).until((ExpectedCondition<Boolean>) (WebDriver d) -> d.findElement(By.id("formulario")).isDisplayed());
+        System.out.println("Fin prueba");
     }
 
     private void sleep(int s) {

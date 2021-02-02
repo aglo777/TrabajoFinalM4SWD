@@ -159,7 +159,7 @@ class DevopsApplicationTests {
 	@Test
 	public void consultaUfServicioExterno() throws Exception {
 		String uri = "/rest/msdxc/uf";
-		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri).queryParam("fecha", "") .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
 		int status = mvcResult.getResponse().getStatus();
 		Assertions.assertEquals(200, status);
 	}

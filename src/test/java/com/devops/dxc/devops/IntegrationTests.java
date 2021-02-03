@@ -37,7 +37,6 @@ class IntegrationTests {
 		mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 	}
 
-	@Ignore
 	@Test
 	public void cuandoSueldoEs1000000Ahorro10000000RetiroEs1000000() throws Exception {
 		String uri = "/rest/msdxc/dxc";
@@ -54,7 +53,6 @@ class IntegrationTests {
 		Assertions.assertEquals("0", respuestaServicioRetiroDTO.getImpuesto());
 	}
 
-	@Ignore
 	@Test
 	public void cuandoSueldoEs2000000Ahorro10000000RetiroEs8254690() throws Exception {
 		String uri = "/rest/msdxc/dxc";
@@ -71,7 +69,6 @@ class IntegrationTests {
 		Assertions.assertEquals("174531", respuestaServicioRetiroDTO.getImpuesto());
 	}
 
-	@Ignore
 	@Test
 	public void cuandoSueldoEs2700000Ahorro10000000RetiroEs635914() throws Exception {
 		String uri = "/rest/msdxc/dxc";
@@ -88,7 +85,6 @@ class IntegrationTests {
 		Assertions.assertEquals("364086", respuestaServicioRetiroDTO.getImpuesto());
 	}
 
-	@Ignore
 	@Test
 	public void cuandoSueldoEs3400000Ahorro10000000RetiroEs387604() throws Exception {
 		String uri = "/rest/msdxc/dxc";
@@ -105,7 +101,6 @@ class IntegrationTests {
 		Assertions.assertEquals("612396", respuestaServicioRetiroDTO.getImpuesto());
 	}
 
-	@Ignore
 	@Test
 	public void cuandoSueldoEs4700000Ahorro10000000RetiroEs19643() throws Exception {
 		String uri = "/rest/msdxc/dxc";
@@ -122,7 +117,6 @@ class IntegrationTests {
 		Assertions.assertEquals("980357", respuestaServicioRetiroDTO.getImpuesto());
 	}
 
-	@Ignore
 	@Test
 	public void cuandoSueldoEs5100000Ahorro20000000RetiroEs705948() throws Exception {
 		String uri = "/rest/msdxc/dxc";
@@ -139,7 +133,6 @@ class IntegrationTests {
 		Assertions.assertEquals("1294052", respuestaServicioRetiroDTO.getImpuesto());
 	}
 
-	@Ignore
 	@Test
 	public void cuandoSueldoEs6100000Ahorro20000000RetiroEs508958() throws Exception {
 		String uri = "/rest/msdxc/dxc";
@@ -156,7 +149,6 @@ class IntegrationTests {
 		Assertions.assertEquals("1491042", respuestaServicioRetiroDTO.getImpuesto());
 	}
 
-	@Ignore
 	@Test
 	public void consultaUfServicioExterno() throws Exception {
 		String uri = "/rest/msdxc/uf";

@@ -10,28 +10,34 @@ pipeline {
             }
         }
 
+        stage('compile') {
+            steps {
+                sh "./mvnw clean compile -e"
+            }
+        }
+
         stage('unit test') {
             steps {
-                sh "./mvnw clean test -e -Dgroups=unit"
+                sh "./mvnw test -e -Dgroups=unit"
             }
         }
 
         stage('integration test') {
             steps {
-                sh "./mvnw clean test -e -Dgroups=integration"
+                sh "./mvnw test -e -Dgroups=integration"
             }
         }
 /*
         stage('functional test') {
             steps {
-                sh "./mvnw clean test -e -Dgroups=functional"
+                sh "./mvnw test -e -Dgroups=functional"
             }
         }
 */
 
         stage('package') {
             steps {
-                sh "./mvnw clean package -e -DskipTests"
+                sh "./mvnw package -e -DskipTests"
             }
         }
 

@@ -35,8 +35,10 @@ pipeline {
         }
 
         stage('run') {
-            sh "nohup java -jar target/devops-0.0.1-SNAPSHOT.jar &"
-            sleep 10
+            steps {
+                sh "nohup java -jar target/devops-0.0.1-SNAPSHOT.jar &"
+                sleep 10
+            }
         }
 
         stage('API test') {

@@ -27,13 +27,12 @@ pipeline {
                 sh "./mvnw test -e -Dgroups=integration"
             }
         }
-/*
+
         stage('functional test') {
             steps {
                 sh "./mvnw test -e -Dgroups=functional"
             }
         }
-*/
 
         stage('package') {
             steps {

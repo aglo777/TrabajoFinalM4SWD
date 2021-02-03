@@ -27,13 +27,13 @@ pipeline {
                 sh "./mvnw clean test -e -Dgroups=integration"
             }
         }
-
+/*
         stage('functional test') {
             steps {
                 sh "./mvnw clean test -e -Dgroups=functional"
             }
         }
-
+*/
         stage('run') {
             steps {
                 sh "nohup java -jar target/devops-0.0.1-SNAPSHOT.jar &"

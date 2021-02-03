@@ -36,7 +36,7 @@ pipeline {
 */
         stage('run') {
             steps {
-                sh "nohup java -jar target/devops-0.0.1-SNAPSHOT.jar &"
+                sh "BUILD_ID=dontKillMe nohup java -jar target/devops-0.0.1-SNAPSHOT.jar --server.port=8082 &"
                 sleep 10
             }
         }

@@ -10,12 +10,6 @@ pipeline {
             }
         }
 
-        stage('package') {
-            steps {
-                sh "./mvnw clean package -e -DskipTests"
-            }
-        }
-
         stage('unit test') {
             steps {
                 sh "./mvnw clean test -e -Dgroups=unit"
@@ -34,9 +28,16 @@ pipeline {
             }
         }
 */
+
+        stage('package') {
+            steps {
+                sh "./mvnw clean package -e -DskipTests"
+            }
+        }
+
         stage('run') {
             steps {
-                sh "BUILD_ID=dontKillMe nohup java -jar target/devops-0.0.1-SNAPSHOT.jar --server.port=8082 &"
+                sh "nohup java -jar target/devops-0.0.1-SNAPSHOT.jar &"
                 sleep 10
             }
         }

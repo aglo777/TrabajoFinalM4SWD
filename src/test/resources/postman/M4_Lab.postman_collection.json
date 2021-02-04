@@ -6,6 +6,61 @@
 	},
 	"item": [
 		{
+			"name": "Validate parameters",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"The response has all properties how string\", () => {",
+							"const responseJson = pm.response.json();",
+							"pm.expect(responseJson.retiro).to.be.a('string');",
+							"pm.expect(responseJson.saldo).to.be.a('string');",
+							"pm.expect(responseJson.impuesto).to.be.a('string');",
+							"});",
+							"",
+							"pm.test(\"Testing status code 200\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=10000000&sueldo=1500000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"dxc"
+					],
+					"query": [
+						{
+							"key": "ahorro",
+							"value": "10000000"
+						},
+						{
+							"key": "sueldo",
+							"value": "1500000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Sueldo=1000000 | Ahorro=1000000 | Retiro=1000000",
 			"event": [
 				{
@@ -19,12 +74,12 @@
 							"  pm.expect(responseJson.impuesto).to.eql(\"0\");",
 							"});",
 							"",
-							"pm.test(\"Testing status codes\", () => {",
+							"pm.test(\"Testing status code 200\", () => {",
 							"  pm.response.to.have.status(200);",
 							"});",
 							"",
-							"pm.test(\"Response time is less than 3000ms\", () => {",
-							"pm.expect(pm.response.responseTime).to.be.below(3000);",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(2000);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -81,12 +136,12 @@
 							"  pm.expect(responseJson.impuesto).to.eql(\"174531\");",
 							"});",
 							"",
-							"pm.test(\"Testing status codes\", () => {",
+							"pm.test(\"Testing status code 200\", () => {",
 							"  pm.response.to.have.status(200);",
 							"});",
 							"",
-							"pm.test(\"Response time is less than 900ms\", () => {",
-							"pm.expect(pm.response.responseTime).to.be.below(900);",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"pm.expect(pm.response.responseTime).to.be.below(2000);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -136,12 +191,12 @@
 							"  pm.expect(responseJson.impuesto).to.eql(\"364086\");",
 							"});",
 							"",
-							"pm.test(\"Testing status codes\", () => {",
+							"pm.test(\"Testing status code 200\", () => {",
 							"  pm.response.to.have.status(200);",
 							"});",
 							"",
-							"pm.test(\"Response time is less than 900ms\", () => {",
-							"pm.expect(pm.response.responseTime).to.be.below(900);",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"pm.expect(pm.response.responseTime).to.be.below(2000);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -191,12 +246,12 @@
 							"  pm.expect(responseJson.impuesto).to.eql(\"612396\");",
 							"});",
 							"",
-							"pm.test(\"Testing status codes\", () => {",
+							"pm.test(\"Testing status code 200\", () => {",
 							"  pm.response.to.have.status(200);",
 							"});",
 							"",
-							"pm.test(\"Response time is less than 900ms\", () => {",
-							"pm.expect(pm.response.responseTime).to.be.below(900);",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -246,12 +301,12 @@
 							"  pm.expect(responseJson.impuesto).to.eql(\"980357\");",
 							"});",
 							"",
-							"pm.test(\"Testing status codes\", () => {",
+							"pm.test(\"Testing status code 200\", () => {",
 							"  pm.response.to.have.status(200);",
 							"});",
 							"",
-							"pm.test(\"Response time is less than 900ms\", () => {",
-							"pm.expect(pm.response.responseTime).to.be.below(900);",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -301,12 +356,12 @@
 							"  pm.expect(responseJson.impuesto).to.eql(\"1294052\");",
 							"});",
 							"",
-							"pm.test(\"Testing status codes\", () => {",
+							"pm.test(\"Testing status code 200\", () => {",
 							"  pm.response.to.have.status(200);",
 							"});",
 							"",
-							"pm.test(\"Response time is less than 900ms\", () => {",
-							"pm.expect(pm.response.responseTime).to.be.below(900);",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -356,12 +411,12 @@
 							"  pm.expect(responseJson.impuesto).to.eql(\"1491042\");",
 							"});",
 							"",
-							"pm.test(\"Testing status codes\", () => {",
+							"pm.test(\"Testing status code 200\", () => {",
 							"  pm.response.to.have.status(200);",
 							"});",
 							"",
-							"pm.test(\"Response time is less than 900ms\", () => {",
-							"pm.expect(pm.response.responseTime).to.be.below(900);",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);",
 							"});",
 							""
 						],
@@ -399,66 +454,14 @@
 			"response": []
 		},
 		{
-			"name": "Response time & code |  UF",
+			"name": "Send  invalid parameters | Bad request | input negative numbers",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"// Testing response times",
-							"",
-							"pm.test(\"Response time is less than 600ms\", () => {",
-							"  pm.expect(pm.response.responseTime).to.be.below(600);",
-							"});",
-							"",
-							"// Testing status codes",
-							"",
-							"pm.test(\"Testing status codes\", () => {",
-							"  pm.response.to.have.status(200);",
-							"});",
-							"",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8082/rest/msdxc/uf/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8082",
-					"path": [
-						"rest",
-						"msdxc",
-						"uf",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Validate string value",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"The response has all properties\", () => {",
-							"const responseJson = pm.response.json();",
-							"pm.expect(responseJson.retiro).to.be.a('string');",
-							"pm.expect(responseJson.saldo).to.be.a('string');",
-							"pm.expect(responseJson.impuesto).to.be.a('string');",
-							"});",
-							"",
-							"pm.test(\"Testing status codes\", () => {",
-							"  pm.response.to.have.status(200);",
+							"pm.test(\"Status code is 400\", () => {",
+							"  pm.response.to.have.status(400);",
 							"});",
 							"",
 							"pm.test(\"Response time is less than 2000ms\", () => {",
@@ -469,11 +472,23 @@
 					}
 				}
 			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=10000000&sueldo=1500000",
+					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=-10000000&sueldo=-1500000",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -487,11 +502,11 @@
 					"query": [
 						{
 							"key": "ahorro",
-							"value": "10000000"
+							"value": "-10000000"
 						},
 						{
 							"key": "sueldo",
-							"value": "1500000"
+							"value": "-1500000"
 						}
 					]
 				}
@@ -559,41 +574,59 @@
 			"response": []
 		},
 		{
-			"name": "Send  invalid parameters | Bad request | input negative numbers",
+			"name": "UF API validate parameters",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 400\", () => {",
-							"  pm.response.to.have.status(400);",
+							"pm.test(\"Testing status code 200\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"The response has all properties how string\", () => {",
+							"const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.version).to.be.a('string');",
+							"  pm.expect(responseJson.autor).to.be.a('string');",
+							"  pm.expect(responseJson.codigo).to.be.a('string');",
+							"  pm.expect(responseJson.nombre).to.be.a('string');",
+							"  pm.expect(responseJson.unidad_medida).to.be.a('string');",
+							"  ",
+							"});",
+							"",
+							"pm.test(\"Body contains string\",() => {",
+							"  pm.expect(pm.response.text()).to.include(\"serie\");",
+							"  pm.expect(pm.response.text()).to.include(\"fecha\");",
+							"  pm.expect(pm.response.text()).to.include(\"valor\");",
+							"  pm.expect(pm.response.text()).to.include(\"Unidad de fomento\");",
+							"  pm.expect(pm.response.text()).to.include(\"uf\");",
+							"});",
+							"",
+							"pm.test(\"Validating responses\", () => {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.codigo).to.be.eql(\"uf\")",
+							"    pm.expect(responseJson.unidad_medida).to.be.eql(\"Pesos\")",
+							"    pm.expect(responseJson.autor).to.be.eql(\"mindicador.cl\")",
+							"});",
+							"",
+							"pm.test(\"String contains at least one value\" , () => {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.serie.length).to.be.above(0);",
 							"});",
 							"",
 							"pm.test(\"Response time is less than 2000ms\", () => {",
-							"pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);",
 							"});"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=dasdasdas&sueldo=dasdsadsad",
+					"raw": "http://localhost:8082/rest/msdxc/uf/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -602,16 +635,58 @@
 					"path": [
 						"rest",
 						"msdxc",
-						"dxc"
+						"uf",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send valid parameters | fecha=01-02-202",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Testing status codes\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"valid parameters\" , () => {",
+							"const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.serie[0].fecha).to.eql(\"2021-02-01T03:00:00.000Z\");",
+							"  pm.expect(responseJson.serie[0].valor).to.eql(29126.55);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/uf/?fecha=01-02-2021",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"uf",
+						""
 					],
 					"query": [
 						{
-							"key": "ahorro",
-							"value": "dasdasdas"
-						},
-						{
-							"key": "sueldo",
-							"value": "dasdsadsad"
+							"key": "fecha",
+							"value": "01-02-2021"
 						}
 					]
 				}
@@ -619,18 +694,24 @@
 			"response": []
 		},
 		{
-			"name": "Method not allowed | Bad request",
+			"name": "Send valid parameters | fecha=02-02-2021",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test('Method not allowed ' + pm.response.code, function() {",
-							"    pm.expect(pm.response.code).equal(405);",
+							"pm.test(\"Testing status codes\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"valid parameters\" , () => {",
+							"const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.serie[0].fecha).to.eql(\"2021-02-02T03:00:00.000Z\");",
+							"  pm.expect(responseJson.serie[0].valor).to.eql(29129.37);",
 							"});",
 							"",
 							"pm.test(\"Response time is less than 2000ms\", () => {",
-							"pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -638,19 +719,10 @@
 				}
 			],
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"ahorro\": \"9000000\",\n    \"sueldo\": \"1000000\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=1000000&sueldo=2000",
+					"raw": "http://localhost:8082/rest/msdxc/uf/?fecha=02-02-2021",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -659,17 +731,177 @@
 					"path": [
 						"rest",
 						"msdxc",
-						"dxc"
+						"uf",
+						""
 					],
 					"query": [
 						{
-							"key": "ahorro",
-							"value": "1000000"
-						},
-						{
-							"key": "sueldo",
-							"value": "2000"
+							"key": "fecha",
+							"value": "02-02-2021"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send valid parameters | fecha=03-02-2021",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Testing status codes\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"valid parameters\" , () => {",
+							"const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.serie[0].fecha).to.eql(\"2021-02-03T03:00:00.000Z\");",
+							"  pm.expect(responseJson.serie[0].valor).to.eql(29132.18);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/uf/?fecha=03-02-2021",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"uf",
+						""
+					],
+					"query": [
+						{
+							"key": "fecha",
+							"value": "03-02-2021"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UF API today",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Testing status codes\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const datesAreOnSameDay = (first, second) =>",
+							"    first.getFullYear() === second.getFullYear() &&",
+							"    first.getMonth() === second.getMonth() &&",
+							"    first.getDate() === second.getDate();",
+							"",
+							"pm.test(\"Fecha sea del dia actual\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var fecha = new Date(jsonData.serie[0].fecha);",
+							"    var now = new Date(Date.now());",
+							"    pm.expect(datesAreOnSameDay(fecha, now)).to.be.true;",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/uf/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"uf",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UF API  specific dates",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Testing status codes\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Testing UF value 2021-02-03\", () => {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.serie[1].fecha).to.eql(\"2021-02-03T03:00:00.000Z\");",
+							"  pm.expect(responseJson.serie[1].valor).to.eql(29132.18);",
+							"  ",
+							"});",
+							"",
+							"pm.test(\"Testing UF value 2021-02-02\", () => {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.serie[2].fecha).to.eql(\"2021-02-02T03:00:00.000Z\");",
+							"  pm.expect(responseJson.serie[2].valor).to.eql(29129.37);",
+							"  ",
+							"});",
+							"",
+							"pm.test(\"Testing UF value 2021-02-01\", () => {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.serie[3].fecha).to.eql(\"2021-02-01T03:00:00.000Z\");",
+							"  pm.expect(responseJson.serie[3].valor).to.eql(29126.55);",
+							"  ",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 4000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(4000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/uf/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"uf",
+						""
 					]
 				}
 			},

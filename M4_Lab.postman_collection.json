@@ -1,0 +1,851 @@
+{
+	"info": {
+		"_postman_id": "8195a6a6-06ee-42c4-89aa-f2eccc825213",
+		"name": "M4_Lab",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Validate parameters",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"The response has all properties how string\", () => {",
+							"const responseJson = pm.response.json();",
+							"pm.expect(responseJson.retiro).to.be.a('string');",
+							"pm.expect(responseJson.saldo).to.be.a('string');",
+							"pm.expect(responseJson.impuesto).to.be.a('string');",
+							"});",
+							"",
+							"pm.test(\"Testing status code 200\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=10000000&sueldo=1500000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"dxc"
+					],
+					"query": [
+						{
+							"key": "ahorro",
+							"value": "10000000"
+						},
+						{
+							"key": "sueldo",
+							"value": "1500000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sueldo=1000000 | Ahorro=1000000 | Retiro=1000000",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"10%\", () => {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.retiro).to.eql(\"1000000\");",
+							"  pm.expect(responseJson.saldo).to.eql(\"9000000\");",
+							"  pm.expect(responseJson.impuesto).to.eql(\"0\");",
+							"});",
+							"",
+							"pm.test(\"Testing status code 200\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=10000000&sueldo=1000000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"dxc"
+					],
+					"query": [
+						{
+							"key": "ahorro",
+							"value": "10000000"
+						},
+						{
+							"key": "sueldo",
+							"value": "1000000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sueldo=2000000 | Ahorro=10000000 | Retiro=8254690",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"10%\", () => {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.retiro).to.eql(\"825469\");",
+							"  pm.expect(responseJson.saldo).to.eql(\"9174531\");",
+							"  pm.expect(responseJson.impuesto).to.eql(\"174531\");",
+							"});",
+							"",
+							"pm.test(\"Testing status code 200\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=10000000&sueldo=2000000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"dxc"
+					],
+					"query": [
+						{
+							"key": "ahorro",
+							"value": "10000000"
+						},
+						{
+							"key": "sueldo",
+							"value": "2000000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sueldo=2700000 | Ahorro=10000000 | Retiro=635914 ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"10%\", () => {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.retiro).to.eql(\"635914\");",
+							"  pm.expect(responseJson.saldo).to.eql(\"9364086\");",
+							"  pm.expect(responseJson.impuesto).to.eql(\"364086\");",
+							"});",
+							"",
+							"pm.test(\"Testing status code 200\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=10000000&sueldo=2700000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"dxc"
+					],
+					"query": [
+						{
+							"key": "ahorro",
+							"value": "10000000"
+						},
+						{
+							"key": "sueldo",
+							"value": "2700000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sueldo=3400000 | Ahorro=10000000 | Retiro=387604 ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"10%\", () => {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.retiro).to.eql(\"387604\");",
+							"  pm.expect(responseJson.saldo).to.eql(\"9612396\");",
+							"  pm.expect(responseJson.impuesto).to.eql(\"612396\");",
+							"});",
+							"",
+							"pm.test(\"Testing status code 200\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=10000000&sueldo=3400000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"dxc"
+					],
+					"query": [
+						{
+							"key": "ahorro",
+							"value": "10000000"
+						},
+						{
+							"key": "sueldo",
+							"value": "3400000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sueldo=4700000 | Ahorro=10000000 | Retiro=19643",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"10%\", () => {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.retiro).to.eql(\"19643\");",
+							"  pm.expect(responseJson.saldo).to.eql(\"9980357\");",
+							"  pm.expect(responseJson.impuesto).to.eql(\"980357\");",
+							"});",
+							"",
+							"pm.test(\"Testing status code 200\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=10000000&sueldo=4700000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"dxc"
+					],
+					"query": [
+						{
+							"key": "ahorro",
+							"value": "10000000"
+						},
+						{
+							"key": "sueldo",
+							"value": "4700000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sueldo=5100000 | Ahorro=20000000 | Retiro=705948",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"10%\", () => {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.retiro).to.eql(\"705948\");",
+							"  pm.expect(responseJson.saldo).to.eql(\"19294052\");",
+							"  pm.expect(responseJson.impuesto).to.eql(\"1294052\");",
+							"});",
+							"",
+							"pm.test(\"Testing status code 200\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=20000000&sueldo=5100000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"dxc"
+					],
+					"query": [
+						{
+							"key": "ahorro",
+							"value": "20000000"
+						},
+						{
+							"key": "sueldo",
+							"value": "5100000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sueldo=6100000 | Ahorro=20000000 | Retiro=508958",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"10%\", () => {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.retiro).to.eql(\"508958\");",
+							"  pm.expect(responseJson.saldo).to.eql(\"19491042\");",
+							"  pm.expect(responseJson.impuesto).to.eql(\"1491042\");",
+							"});",
+							"",
+							"pm.test(\"Testing status code 200\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=20000000&sueldo=6100000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"dxc"
+					],
+					"query": [
+						{
+							"key": "ahorro",
+							"value": "20000000"
+						},
+						{
+							"key": "sueldo",
+							"value": "6100000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send  invalid parameters | Bad request | input negative numbers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", () => {",
+							"  pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=-10000000&sueldo=-1500000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"dxc"
+					],
+					"query": [
+						{
+							"key": "ahorro",
+							"value": "-10000000"
+						},
+						{
+							"key": "sueldo",
+							"value": "-1500000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send  invalid parameters | Bad request | inpunt letters",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", () => {",
+							"  pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/dxc?ahorro=dasdasdas&sueldo=dasdsadsad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"dxc"
+					],
+					"query": [
+						{
+							"key": "ahorro",
+							"value": "dasdasdas"
+						},
+						{
+							"key": "sueldo",
+							"value": "dasdsadsad"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UF API validate parameters",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Testing status code 200\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"The response has all properties how string\", () => {",
+							"const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.version).to.be.a('string');",
+							"  pm.expect(responseJson.autor).to.be.a('string');",
+							"  pm.expect(responseJson.codigo).to.be.a('string');",
+							"  pm.expect(responseJson.nombre).to.be.a('string');",
+							"  pm.expect(responseJson.unidad_medida).to.be.a('string');",
+							"  ",
+							"});",
+							"",
+							"pm.test(\"Body contains string\",() => {",
+							"  pm.expect(pm.response.text()).to.include(\"serie\");",
+							"  pm.expect(pm.response.text()).to.include(\"fecha\");",
+							"  pm.expect(pm.response.text()).to.include(\"valor\");",
+							"  pm.expect(pm.response.text()).to.include(\"Unidad de fomento\");",
+							"  pm.expect(pm.response.text()).to.include(\"uf\");",
+							"});",
+							"",
+							"pm.test(\"Validating responses\", () => {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.codigo).to.be.eql(\"uf\")",
+							"    pm.expect(responseJson.unidad_medida).to.be.eql(\"Pesos\")",
+							"    pm.expect(responseJson.autor).to.be.eql(\"mindicador.cl\")",
+							"});",
+							"",
+							"pm.test(\"String contains at least one value\" , () => {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.serie.length).to.be.above(0);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/uf/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"uf",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send valid parameters | fecha=01-02-2021",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Testing status codes\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"valid parameters\" , () => {",
+							"const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.serie[0].fecha).to.eql(\"2021-02-01T03:00:00.000Z\");",
+							"  pm.expect(responseJson.serie[0].valor).to.eql(29126.55);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/uf/?fecha=01-02-2021",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"uf",
+						""
+					],
+					"query": [
+						{
+							"key": "fecha",
+							"value": "01-02-2021"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send valid parameters | fecha=02-02-2021",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Testing status codes\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"valid parameters\" , () => {",
+							"const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.serie[0].fecha).to.eql(\"2021-02-02T03:00:00.000Z\");",
+							"  pm.expect(responseJson.serie[0].valor).to.eql(29129.37);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/uf/?fecha=02-02-2021",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"uf",
+						""
+					],
+					"query": [
+						{
+							"key": "fecha",
+							"value": "02-02-2021"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send valid parameters | fecha=03-02-2021",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Testing status codes\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"valid parameters\" , () => {",
+							"const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.serie[0].fecha).to.eql(\"2021-02-03T03:00:00.000Z\");",
+							"  pm.expect(responseJson.serie[0].valor).to.eql(29132.18);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/uf/?fecha=03-02-2021",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"uf",
+						""
+					],
+					"query": [
+						{
+							"key": "fecha",
+							"value": "03-02-2021"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UF API today",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Testing status codes\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const datesAreOnSameDay = (first, second) =>",
+							"    first.getFullYear() === second.getFullYear() &&",
+							"    first.getMonth() === second.getMonth() &&",
+							"    first.getDate() === second.getDate();",
+							"",
+							"pm.test(\"Fecha sea del dia actual\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var fecha = new Date(jsonData.serie[0].fecha);",
+							"    var now = new Date(Date.now());",
+							"    pm.expect(datesAreOnSameDay(fecha, now)).to.be.true;",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/rest/msdxc/uf/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"rest",
+						"msdxc",
+						"uf",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

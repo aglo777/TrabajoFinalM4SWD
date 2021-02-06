@@ -643,7 +643,7 @@
 			"response": []
 		},
 		{
-			"name": "Send valid parameters | fecha=01-02-202",
+			"name": "Send valid parameters | fecha=01-02-2021",
 			"event": [
 				{
 					"listen": "test",
@@ -822,66 +822,6 @@
 							"  pm.expect(pm.response.responseTime).to.be.below(2000);",
 							"});",
 							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8082/rest/msdxc/uf/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8082",
-					"path": [
-						"rest",
-						"msdxc",
-						"uf",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "UF API  specific dates",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Testing status codes\", () => {",
-							"  pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Testing UF value 2021-02-03\", () => {",
-							"  const responseJson = pm.response.json();",
-							"  pm.expect(responseJson.serie[1].fecha).to.eql(\"2021-02-03T03:00:00.000Z\");",
-							"  pm.expect(responseJson.serie[1].valor).to.eql(29132.18);",
-							"  ",
-							"});",
-							"",
-							"pm.test(\"Testing UF value 2021-02-02\", () => {",
-							"  const responseJson = pm.response.json();",
-							"  pm.expect(responseJson.serie[2].fecha).to.eql(\"2021-02-02T03:00:00.000Z\");",
-							"  pm.expect(responseJson.serie[2].valor).to.eql(29129.37);",
-							"  ",
-							"});",
-							"",
-							"pm.test(\"Testing UF value 2021-02-01\", () => {",
-							"  const responseJson = pm.response.json();",
-							"  pm.expect(responseJson.serie[3].fecha).to.eql(\"2021-02-01T03:00:00.000Z\");",
-							"  pm.expect(responseJson.serie[3].valor).to.eql(29126.55);",
-							"  ",
-							"});",
-							"",
-							"pm.test(\"Response time is less than 4000ms\", () => {",
-							"  pm.expect(pm.response.responseTime).to.be.below(4000);",
-							"});"
 						],
 						"type": "text/javascript"
 					}
